@@ -1,0 +1,13 @@
+---
+- name: Install Zip
+  hosts: hack
+  become: true
+
+  tasks:
+  - name: Update debian
+    apt: update_cache=yes 
+
+  - name: Install zip Package
+    apt:
+      name: zip
+      state: present

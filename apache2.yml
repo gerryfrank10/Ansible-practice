@@ -1,0 +1,19 @@
+---
+- name: Install apache2
+  hosts: hack
+  become: true
+
+  tasks:
+  - name: Install Apache2
+    apt:
+      name: apache2
+      state: present
+
+  - name: Insert Index Page
+    template:
+       src: index.html
+       dest: /var/www/html
+  - name: Start apache2 server
+    service:
+       name: apache2
+       state: started  

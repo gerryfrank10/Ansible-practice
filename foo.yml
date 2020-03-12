@@ -1,0 +1,42 @@
+---
+- name: Install and develop
+  hosts: hack
+  become: true
+
+  tasks:
+  - name: Install httpd
+    apt:
+     name: apache2
+     state: present
+
+  - name: Update repo and install vim packages 
+    apt:
+     name: vim
+     update_cache: yes
+
+  - name: Remove vim package
+    apt:
+     name: vim
+     state: absent
+
+  - name: Install a list of packages
+    apt:
+     pkg:
+     - vim
+     - vim-doc
+
+
+  - name: Install latest openjdk-8-jdk 
+    apt:
+     name: openjdk-8-jdk
+     state: latest
+     install_recommends: no
+
+  - name: Upgrade debian
+    apt:
+     name: "*"
+     state: latest
+
+  - name: Update all debian packages
+    apt:
+     upgrade: dist

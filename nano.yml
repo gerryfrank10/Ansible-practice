@@ -1,0 +1,11 @@
+---
+- name: Install Nano
+  hosts: dev
+  become: true
+
+  tasks:
+  - name: Install Nano Editor
+    apt:
+      name: nano
+      state: present
+

@@ -1,0 +1,19 @@
+- name: Install nginx
+  hosts: dev
+  become: true
+
+  tasks:
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: Insert Index Page
+    template:
+       src: index.html
+       dest: /var/www/html/index.html
+
+  - name: Start nginx
+    service:
+      name: nginx
+      state: started
